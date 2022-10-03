@@ -6,42 +6,35 @@ import (
 )
 
 func main() {
-	var firstNumber int64
-	firstNumber = GetAndConvert("Enter first number:")
-	fmt.Println(firstNumber) //2
+	var inputString string
+	inputString = GetAndConvert("Enter three-digit number:")
+	fmt.Println(inputString) //234
 
-	var secondNumber int64
-	secondNumber = GetAndConvert("Enter second number:")
-	fmt.Println(secondNumber) //3
-
-	var thirdNumber int64
-	thirdNumber = GetAndConvert("Enter third number:")
-	fmt.Println(thirdNumber) //4
-
-	var a, b, c int64 = thirdNumber, secondNumber, firstNumber
-	fmt.Println(a, b, c) // 432
+	result := ReverseString(inputString)
+	fmt.Println(result) // 432
 }
 
-func GetAndConvert(numberTitle string) int64 {
+func GetAndConvert(numberTitle string) string {
 	var strNumber string
 	fmt.Print(numberTitle)
 	fmt.Scan(&strNumber)
 	fmt.Println()
-	numberResultI64, err := strconv.ParseInt(strNumber, 10, 64)
+	if len([]rune(strNumber)) > 3 {
+		fmt.Println("Invalid Number , number should be three-digit")
+		return GetAndConvert(numberTitle)
+	}
+	_, err := strconv.ParseInt(strNumber, 10, 64)
 	if err != nil {
 		fmt.Println("Invalid Number")
 		return GetAndConvert(numberTitle)
 	}
-	return numberResultI64
+	return strNumber
 }
 
-// func reverseNumber(num int) int {
-
-// 	res := 0
-// 	for num>0 {
-// 	   remainder := num % 10
-// 	   res = (res * 10) + remainder
-// 	   num /= 10
-// 	}
-// 	return res
-//  }
+func ReverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
