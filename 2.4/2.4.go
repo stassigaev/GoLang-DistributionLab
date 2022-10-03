@@ -6,15 +6,15 @@ import (
 )
 
 func main() {
-	var firstNumber float64
-	firstNumber = GetAndConvert("Enter first number:")
-	fmt.Println(firstNumber) //4
+	var firstPipe float64
+	firstPipe = GetAndConvert("Enter first pipe:")
+	fmt.Println(firstPipe) //4
 
-	var secondNumber float64
-	secondNumber = GetAndConvert("Enter second number:")
-	fmt.Println(secondNumber) //2
+	var secondPipe float64
+	secondPipe = GetAndConvert("Enter second pipe:")
+	fmt.Println(secondPipe) //2
 
-	resultSide := pipeWorkCalc(firstNumber, secondNumber)
+	resultSide := pipeWorkCalc(firstPipe, secondPipe)
 	fmt.Print("Pipe will fill for " + strconv.FormatFloat(resultSide, 'g', 10, 64))
 }
 
